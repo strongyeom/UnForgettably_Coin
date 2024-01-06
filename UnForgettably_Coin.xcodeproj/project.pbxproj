@@ -15,6 +15,13 @@
 		26DD82A92B4933D700364D2B /* CoinMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82A82B4933D700364D2B /* CoinMainView.swift */; };
 		26DD82AB2B49397700364D2B /* DummyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82AA2B49397700364D2B /* DummyDataModel.swift */; };
 		26DD82AD2B493A4C00364D2B /* CoinDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82AC2B493A4C00364D2B /* CoinDetailView.swift */; };
+		26DD82B62B49886800364D2B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 26DD82B52B49886800364D2B /* .gitignore */; };
+		26DD82B82B49889500364D2B /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82B72B49889500364D2B /* ServiceKey.swift */; };
+		26DD82BA2B4988E200364D2B /* NaverNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82B92B4988E200364D2B /* NaverNews.swift */; };
+		26DD82BD2B49899400364D2B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82BC2B49899400364D2B /* NetworkManager.swift */; };
+		26DD82C02B4989BE00364D2B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 26DD82BF2B4989BE00364D2B /* Alamofire */; };
+		26DD82C42B49958900364D2B /* NewsWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82C32B49958900364D2B /* NewsWebView.swift */; };
+		26DD82C62B49981C00364D2B /* NaverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82C52B49981C00364D2B /* NaverViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +34,12 @@
 		26DD82A82B4933D700364D2B /* CoinMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMainView.swift; sourceTree = "<group>"; };
 		26DD82AA2B49397700364D2B /* DummyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyDataModel.swift; sourceTree = "<group>"; };
 		26DD82AC2B493A4C00364D2B /* CoinDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailView.swift; sourceTree = "<group>"; };
+		26DD82B52B49886800364D2B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		26DD82B72B49889500364D2B /* ServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKey.swift; sourceTree = "<group>"; };
+		26DD82B92B4988E200364D2B /* NaverNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverNews.swift; sourceTree = "<group>"; };
+		26DD82BC2B49899400364D2B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		26DD82C32B49958900364D2B /* NewsWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebView.swift; sourceTree = "<group>"; };
+		26DD82C52B49981C00364D2B /* NaverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DD82C02B4989BE00364D2B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,10 +75,15 @@
 			children = (
 				26DD82982B4932EF00364D2B /* UnForgettably_CoinApp.swift */,
 				26DD829A2B4932EF00364D2B /* ContentView.swift */,
-				26DD82A62B4933CC00364D2B /* NewsListView.swift */,
-				26DD82A82B4933D700364D2B /* CoinMainView.swift */,
+				26DD82C52B49981C00364D2B /* NaverViewModel.swift */,
+				26DD82BB2B49898200364D2B /* Network */,
+				26DD82AE2B4987DA00364D2B /* Model */,
+				26DD82AF2B4987EC00364D2B /* News */,
+				26DD82B02B4987F100364D2B /* CoinView */,
 				26DD82AA2B49397700364D2B /* DummyDataModel.swift */,
 				26DD82AC2B493A4C00364D2B /* CoinDetailView.swift */,
+				26DD82B52B49886800364D2B /* .gitignore */,
+				26DD82B72B49889500364D2B /* ServiceKey.swift */,
 				26DD829C2B4932F100364D2B /* Assets.xcassets */,
 				26DD829E2B4932F100364D2B /* Preview Content */,
 			);
@@ -77,6 +96,39 @@
 				26DD829F2B4932F100364D2B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		26DD82AE2B4987DA00364D2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				26DD82B92B4988E200364D2B /* NaverNews.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		26DD82AF2B4987EC00364D2B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				26DD82A62B4933CC00364D2B /* NewsListView.swift */,
+				26DD82C32B49958900364D2B /* NewsWebView.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		26DD82B02B4987F100364D2B /* CoinView */ = {
+			isa = PBXGroup;
+			children = (
+				26DD82A82B4933D700364D2B /* CoinMainView.swift */,
+			);
+			path = CoinView;
+			sourceTree = "<group>";
+		};
+		26DD82BB2B49898200364D2B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				26DD82BC2B49899400364D2B /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +147,9 @@
 			dependencies = (
 			);
 			name = UnForgettably_Coin;
+			packageProductDependencies = (
+				26DD82BF2B4989BE00364D2B /* Alamofire */,
+			);
 			productName = UnForgettably_Coin;
 			productReference = 26DD82952B4932EF00364D2B /* UnForgettably_Coin.app */;
 			productType = "com.apple.product-type.application";
@@ -123,6 +178,9 @@
 				Base,
 			);
 			mainGroup = 26DD828C2B4932EF00364D2B;
+			packageReferences = (
+				26DD82BE2B4989BE00364D2B /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 26DD82962B4932EF00364D2B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26DD82A02B4932F100364D2B /* Preview Assets.xcassets in Resources */,
+				26DD82B62B49886800364D2B /* .gitignore in Resources */,
 				26DD829D2B4932F100364D2B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,11 +208,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DD82C62B49981C00364D2B /* NaverViewModel.swift in Sources */,
+				26DD82C42B49958900364D2B /* NewsWebView.swift in Sources */,
 				26DD829B2B4932EF00364D2B /* ContentView.swift in Sources */,
 				26DD82A72B4933CC00364D2B /* NewsListView.swift in Sources */,
 				26DD82AD2B493A4C00364D2B /* CoinDetailView.swift in Sources */,
+				26DD82BA2B4988E200364D2B /* NaverNews.swift in Sources */,
 				26DD82A92B4933D700364D2B /* CoinMainView.swift in Sources */,
 				26DD82992B4932EF00364D2B /* UnForgettably_CoinApp.swift in Sources */,
+				26DD82BD2B49899400364D2B /* NetworkManager.swift in Sources */,
+				26DD82B82B49889500364D2B /* ServiceKey.swift in Sources */,
 				26DD82AB2B49397700364D2B /* DummyDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +424,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		26DD82BE2B4989BE00364D2B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		26DD82BF2B4989BE00364D2B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26DD82BE2B4989BE00364D2B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 26DD828D2B4932EF00364D2B /* Project object */;
 }

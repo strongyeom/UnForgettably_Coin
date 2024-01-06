@@ -9,22 +9,24 @@ import SwiftUI
 
 struct NewsListView: View {
     
-    let dummyList = ["123123", "fdfsddfsfsdf", "88484dffdsfsdf"]
+    @StateObject var naverNewsViewModel = NaverViewModel()
     
     var body: some View {
         VStack {
-            List {
+            List() {
                 Section("주요뉴스") {
-                    ForEach(dummyList, id: \.self) { dummy in
-                        Text("\(dummy)")
-                            .font(.headline)
+                    ForEach(naverNewsViewModel.naverNews, id: \.self) { dummy in
+                        NavigationLink(value: dummy) {
+                            Text("\(dummy.title)")
+                                .font(.headline)
+                        }
                     }
                 }
             }
             .listStyle(.plain)
-            .scrollDisabled(true)
-//            .background(.green)
-            .frame(height: 200)
+            .navigationDestination(for: Items.self) { naverItems in
+                NewsWebView(naverData: naverItems)
+            }
         }
     }
 }

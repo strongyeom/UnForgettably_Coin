@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var naverNewsViewModel = NaverViewModel()
     var body: some View {
-        VStack {
-            NewsListView()
-            CoinMainView()
-        }
+        NavigationStack {
+            VStack {
+                NewsListView()
+                CoinMainView()
+            }
+           
+           
+        } // NavigationStack
     }
 }
 

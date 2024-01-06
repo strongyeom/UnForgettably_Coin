@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct NewsWebView: View {
+    
+    var naverData: Items
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Link(destination: URL(string: "https://www.cbci.co.kr/news/articleView.html?idxno=456393")!) {
+            Text("Safari App으로 이동해서 보여주기")
+        }
     }
 }
 
-#Preview {
-    NewsWebView()
-}
+//#Preview {
+//    NewsWebView(naverData: navern)
+//}
