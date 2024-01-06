@@ -18,7 +18,7 @@ struct CoinMainView: View {
     ]
     
     var body: some View {
-        NavigationStack {
+        
             
             ScrollView {
                 ZStack {
@@ -44,7 +44,7 @@ struct CoinMainView: View {
                 }
                
             }
-        }
+        
     }
 }
 

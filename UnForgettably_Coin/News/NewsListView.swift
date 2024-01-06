@@ -15,13 +15,17 @@ struct NewsListView: View {
         VStack {
             List {
                 Section("주요뉴스") {
-                    ForEach(naverNewsViewModel.naverNews, id: \.self) { dummy in
+                    ForEach(naverNewsViewModel.naverNews, id: \.self) { data in
                         
-                        let aa = dummy.link.replacingOccurrences(of: #"\"#, with: "")
-
+                        let filterUrl = data.link.replacingOccurrences(of: #"\"#, with: "")
+                        var filterTitle = data.title
+                            .replacingOccurrences(of: "<b>", with: "")
+                            .replacingOccurrences(of: "&quot;", with: "")
+                            .replacingOccurrences(of: "</b>", with: "")
                         
-                        Link(destination: URL(string: aa)!, label: {
-                            Text("\(dummy.title)")
+                        
+                        Link(destination: URL(string: filterUrl)!, label: {
+                            Text(filterTitle)
                         })
                     } // ForEach
                 } // Section
