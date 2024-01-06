@@ -23,7 +23,7 @@ struct NewsListView: View {
             }
             .listStyle(.plain)
             .scrollDisabled(true)
-            .background(.green)
+//            .background(.green)
             .frame(height: 200)
         }
     }
