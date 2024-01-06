@@ -13,21 +13,23 @@ struct NewsListView: View {
     
     var body: some View {
         VStack {
-            List() {
+            List {
                 Section("주요뉴스") {
                     ForEach(naverNewsViewModel.naverNews, id: \.self) { dummy in
-                        NavigationLink(value: dummy) {
+                        
+                        let aa = dummy.link.replacingOccurrences(of: #"\"#, with: "")
+
+                        
+                        Link(destination: URL(string: aa)!, label: {
                             Text("\(dummy.title)")
-                                .font(.headline)
-                        }
-                    }
-                }
-            }
+                        })
+                    } // ForEach
+                } // Section
+            } // List
             .listStyle(.plain)
-            .navigationDestination(for: Items.self) { naverItems in
-                NewsWebView(naverData: naverItems)
-            }
+            
         }
+       
     }
 }
 

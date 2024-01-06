@@ -20,7 +20,6 @@
 		26DD82BA2B4988E200364D2B /* NaverNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82B92B4988E200364D2B /* NaverNews.swift */; };
 		26DD82BD2B49899400364D2B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82BC2B49899400364D2B /* NetworkManager.swift */; };
 		26DD82C02B4989BE00364D2B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 26DD82BF2B4989BE00364D2B /* Alamofire */; };
-		26DD82C42B49958900364D2B /* NewsWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82C32B49958900364D2B /* NewsWebView.swift */; };
 		26DD82C62B49981C00364D2B /* NaverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82C52B49981C00364D2B /* NaverViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,6 @@
 		26DD82B72B49889500364D2B /* ServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKey.swift; sourceTree = "<group>"; };
 		26DD82B92B4988E200364D2B /* NaverNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverNews.swift; sourceTree = "<group>"; };
 		26DD82BC2B49899400364D2B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		26DD82C32B49958900364D2B /* NewsWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebView.swift; sourceTree = "<group>"; };
 		26DD82C52B49981C00364D2B /* NaverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				26DD82A62B4933CC00364D2B /* NewsListView.swift */,
-				26DD82C32B49958900364D2B /* NewsWebView.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -209,7 +206,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				26DD82C62B49981C00364D2B /* NaverViewModel.swift in Sources */,
-				26DD82C42B49958900364D2B /* NewsWebView.swift in Sources */,
 				26DD829B2B4932EF00364D2B /* ContentView.swift in Sources */,
 				26DD82A72B4933CC00364D2B /* NewsListView.swift in Sources */,
 				26DD82AD2B493A4C00364D2B /* CoinDetailView.swift in Sources */,
