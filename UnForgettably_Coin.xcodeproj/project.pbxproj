@@ -80,7 +80,6 @@
 				26DD82AF2B4987EC00364D2B /* News */,
 				26DD82B02B4987F100364D2B /* CoinView */,
 				26DD82AA2B49397700364D2B /* DummyDataModel.swift */,
-				26DD82AC2B493A4C00364D2B /* CoinDetailView.swift */,
 				26DD82B52B49886800364D2B /* .gitignore */,
 				26DD82B72B49889500364D2B /* ServiceKey.swift */,
 				26DD829C2B4932F100364D2B /* Assets.xcassets */,
@@ -118,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				26DD82A82B4933D700364D2B /* CoinMainView.swift */,
+				26DD82AC2B493A4C00364D2B /* CoinDetailView.swift */,
 			);
 			path = CoinView;
 			sourceTree = "<group>";

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CoinMainView: View {
-
+    
     let dummyModel = DummyDataModel()
     //화면을 그리드형식으로 꽉채워줌
     let columns = [
@@ -25,21 +25,23 @@ struct CoinMainView: View {
     }
     
     var body: some View {
-            ScrollView {
+        
+        
+        RoundedRectangle(cornerRadius: 20)
+            .fill(.blue)
+            .ignoresSafeArea()
+            .overlay {
                 VStack {
                     TextField("코인명을 입력해주세요.", text: $searchText)
                         .multilineTextAlignment(.center)
                         .textFieldStyle(.roundedBorder)
                         .overlay {
                             Image(systemName: "magnifyingglass")
-                                .foregroundStyle(.gray)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 10)
                         }
-                        .padding(.horizontal, 10)
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(.gray)
+                        .padding(EdgeInsets(top: 20, leading: 20, bottom: 5, trailing: 20))
+                    ScrollView {
                         LazyVGrid(columns: columns) {
                             
                             ForEach(searchFilterCoinList, id: \.self) { market in
@@ -59,13 +61,10 @@ struct CoinMainView: View {
                         }
                     }
                 }
-            } // ScrollView
-            .onSubmit(of: .text) {
-                print("검색어 \(searchText)")
-                searchText = ""
+                .onSubmit(of: .text) {
+                    print("검색어 \(searchText)")
+                }
             }
-         
-        
     }
 }
 
