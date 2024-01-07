@@ -18,7 +18,7 @@ struct NewsListView: View {
                     ForEach(naverNewsViewModel.naverNews, id: \.self) { data in
                         
                         let filterUrl = data.link.replacingOccurrences(of: #"\"#, with: "")
-                        var filterTitle = data.title
+                        let filterTitle = data.title
                             .replacingOccurrences(of: "<b>", with: "")
                             .replacingOccurrences(of: "&quot;", with: "")
                             .replacingOccurrences(of: "</b>", with: "")
