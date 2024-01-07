@@ -11,6 +11,7 @@ import Combine
 class SocketViewModel : ObservableObject {
     
     @Published var tikcerList: CurrentCoinValue = CurrentCoinValue(opening_price: 0, high_price: 0, low_price: 0, trade_price: 0, acc_trade_price_24h: 0, acc_trade_volume_24h: 0)
+    @Published var chartValues: [ChartComponets] = []
     
     private var cancelable = Set<AnyCancellable>()
     
@@ -24,6 +25,8 @@ class SocketViewModel : ObservableObject {
             .sink { [weak self] order in
                 guard let self else { return }
                 self.tikcerList = order
+                self.chartValues.append(ChartComponets(date: .now, value: order.trade_price))
+                print("chartValues - \(chartValues)")
             }
             .store(in: &cancelable)
     }
@@ -31,5 +34,7 @@ class SocketViewModel : ObservableObject {
     deinit {
         print("SocketViewMdoel deinit")
         WebSocketManager.shared.closeWebSocket()
+        self.chartValues = []
     }
+
 }

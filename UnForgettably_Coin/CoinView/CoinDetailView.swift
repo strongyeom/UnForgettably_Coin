@@ -40,14 +40,16 @@ struct CoinDetailView: View {
             
             currentCoinValue
             Chart {
-                ForEach(datas, id:\.date) { item in
-                    LineMark(x: .value("Date", item.date), y: .value("Value", item.value))
-                        .symbol(by: .value("Value", item.value))
-                        .symbolSize(40)
+                ForEach(webSocketViewModel.chartValues, id:\.self) { item in
+                    LineMark(x: .value("Date", item.date),
+                             y: .value("Value", item.value))
+                        .symbol(by: .value("Date", item.date))
                 }
                 .foregroundStyle(.blue)
             }
-            .chartScrollableAxes(.horizontal)
+            .padding(30)
+            .chartScrollableAxes([.vertical, .horizontal])
+            .chartYScale(domain: webSocketViewModel.tikcerList.trade_price * 0.9985 ... webSocketViewModel.tikcerList.trade_price * 1.0027)
             
         }
         .navigationTitle(selectedCoinInfo.koreanName)
