@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CoinMainView: View {
     
-    let dummyModel = DummyDataModel()
     //화면을 그리드형식으로 꽉채워줌
     let columns = [
         GridItem(.adaptive(minimum: 100))

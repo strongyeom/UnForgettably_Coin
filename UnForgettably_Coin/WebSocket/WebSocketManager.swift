@@ -100,7 +100,7 @@ extension WebSocketManager : URLSessionWebSocketDelegate {
         
     }
     
-    private func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
         print("WebSocket 연결 끊김")
         isConnect = false
     }

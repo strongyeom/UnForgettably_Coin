@@ -8,28 +8,8 @@
 import SwiftUI
 import Charts
 
-struct Data {
-    let name: String = "jake"
-    let date: Date
-    let value: Int
-}
-
-
-
 struct CoinDetailView: View {
-    
-    let datas = [
-        Data(date: .now, value: 10),
-        Data(date: .now.addingTimeInterval(10), value: 5),
-        Data(date: .now.addingTimeInterval(20), value: 15),
-        Data(date: .now.addingTimeInterval(30), value: 8),
-        Data(date: .now.addingTimeInterval(40), value: 9),
-        Data(date: .now.addingTimeInterval(50), value: 5),
-        Data(date: .now.addingTimeInterval(60), value: 15),
-        Data(date: .now.addingTimeInterval(70), value: 8),
-        Data(date: .now.addingTimeInterval(80), value: 9),
-    ]
-    
+
     @StateObject var webSocketViewModel = SocketViewModel()
    
     var selectedCoinInfo : CoinMarket
@@ -39,17 +19,18 @@ struct CoinDetailView: View {
         VStack {
             
             currentCoinValue
-            Chart {
-                ForEach(webSocketViewModel.chartValues, id:\.self) { item in
-                    LineMark(x: .value("Date", item.date),
-                             y: .value("Value", item.value))
-                        .symbol(by: .value("Date", item.date))
+            
+                Chart {
+                    ForEach(webSocketViewModel.chartValues, id:\.self) { item in
+                        
+                        BarMark(x: .value("Date", item.date),
+                                 y: .value("Value", item.value))
+                    }
+                    .foregroundStyle(.blue)
                 }
-                .foregroundStyle(.blue)
-            }
-            .padding(30)
-            .chartScrollableAxes([.vertical, .horizontal])
-            .chartYScale(domain: webSocketViewModel.tikcerList.trade_price * 0.9985 ... webSocketViewModel.tikcerList.trade_price * 1.0027)
+                .padding(30)
+                .chartScrollableAxes(.horizontal)
+                .chartYScale(domain: webSocketViewModel.tikcerList.trade_price * 0.997 ... webSocketViewModel.tikcerList.trade_price * 1.003)
             
         }
         .navigationTitle(selectedCoinInfo.koreanName)
@@ -59,6 +40,7 @@ struct CoinDetailView: View {
             webSocketViewModel.fetchWebSocket(selectedCoin: selectedCoinInfo.market)
         }
     }
+ 
     
     var currentCoinValue: some View {
         HStack(alignment: .top, spacing: 10) {
@@ -106,6 +88,7 @@ struct CoinDetailView: View {
             }
        
         }
+        .background(.green)
         .font(.caption2)
     }
 }
