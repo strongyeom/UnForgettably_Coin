@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CoinDetailView: View {
     
-    var selectedText : String
+    var selectedText : CoinMarket
    
     var body: some View {
-        Text("\(selectedText)")
+        Text("\(selectedText.koreanName)")
     }
 }
 
-#Preview {
-    CoinDetailView(selectedText: "")
-}
+//#Preview {
+//    CoinDetailView(selectedText: "")
+//}

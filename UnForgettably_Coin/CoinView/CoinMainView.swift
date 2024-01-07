@@ -15,7 +15,14 @@ struct CoinMainView: View {
         GridItem(.adaptive(minimum: 100))
     ]
     
+    
+    
     @State private var searchText = ""
+    @StateObject var coinViewModel = CoinListViewModel()
+    
+    var searchFilterCoinList: [CoinMarket] {
+        return searchText.isEmpty ? coinViewModel.coinMarket : coinViewModel.coinMarket.filter { $0.koreanName.contains(searchText)}
+    }
     
     var body: some View {
             ScrollView {
@@ -35,19 +42,19 @@ struct CoinMainView: View {
                             .fill(.gray)
                         LazyVGrid(columns: columns) {
                             
-                            ForEach(dummyModel.name, id: \.self) { number in
-                                NavigationLink(value: number) {
+                            ForEach(searchFilterCoinList, id: \.self) { market in
+                                NavigationLink(value: market) {
                                     Capsule()
                                         .fill(.yellow)
                                         .overlay {
-                                            Text("\(number)")
+                                            Text("\(market.koreanName)")
                                         }
                                         .frame(height: 60)
                                 }
                             }
                         }
                         .padding()
-                        .navigationDestination(for: String.self) { data in
+                        .navigationDestination(for: CoinMarket.self) { data in
                             CoinDetailView(selectedText: data)
                         }
                     }
@@ -55,6 +62,7 @@ struct CoinMainView: View {
             } // ScrollView
             .onSubmit(of: .text) {
                 print("검색어 \(searchText)")
+                searchText = ""
             }
          
         
