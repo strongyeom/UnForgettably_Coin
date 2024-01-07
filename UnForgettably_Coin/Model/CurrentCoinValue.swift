@@ -14,4 +14,39 @@ struct CurrentCoinValue: Decodable, Hashable {
     let trade_price: Double
     let acc_trade_price_24h: Double
     let acc_trade_volume_24h: Double
+    
+    
+    var kstFilterOpen: String {
+        return self.opening_price.formatted()
+    }
+    
+    var kstFilterHigh: String {
+        return self.high_price.formatted()
+    }
+
+    var kstFilterLow: String {
+        return self.low_price.formatted()
+    }
+    
+    var kstFilterTrade: String {
+        return self.trade_price.formatted()
+    }
+    
+    var kstFilterPrice24h: String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 0
+        numberFormatter.numberStyle = .decimal
+        let result = numberFormatter.string(for: self.acc_trade_price_24h) ?? "0"
+        return result
+    }
+    
+    var kstFilterVolume24h: String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 0
+        numberFormatter.numberStyle = .decimal
+        let result = numberFormatter.string(for: self.acc_trade_volume_24h) ?? "0"
+        return result
+    }
+    
+  
 }

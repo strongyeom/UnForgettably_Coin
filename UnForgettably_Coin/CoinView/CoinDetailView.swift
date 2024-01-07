@@ -60,17 +60,17 @@ struct CoinDetailView: View {
     
     var currentCoinValue: some View {
         HStack(alignment: .top, spacing: 10) {
-            Text("\(webSocketViewModel.tikcerList.trade_price)원")
+            Text("\(webSocketViewModel.tikcerList.kstFilterTrade)원")
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundStyle(.red)
-                .lineLimit(1)
+                .lineLimit(2)
             Spacer()
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 10) {
                     Text("고가")
                         .frame(width: 80, alignment: .leading)
-                    Text("20,000,00")
+                    Text(webSocketViewModel.tikcerList.kstFilterHigh)
                         .foregroundStyle(.red)
                         .minimumScaleFactor(0.5)
                         .bold()
@@ -80,7 +80,7 @@ struct CoinDetailView: View {
                 HStack(spacing: 10) {
                     Text("저가")
                         .frame(width: 80, alignment: .leading)
-                    Text("20,000,0090909999099090")
+                    Text(webSocketViewModel.tikcerList.kstFilterLow)
                         .foregroundStyle(.blue)
                         .minimumScaleFactor(0.5)
                         .bold()
@@ -89,7 +89,7 @@ struct CoinDetailView: View {
                 HStack(spacing: 10) {
                     Text("거래량24H")
                         .frame(width: 80, alignment: .leading)
-                    Text("20,000,0090909999099090원")
+                    Text(webSocketViewModel.tikcerList.kstFilterVolume24h)
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
                 }
@@ -97,7 +97,7 @@ struct CoinDetailView: View {
                 HStack(spacing: 10) {
                     Text("거래대금24H")
                         .frame(width: 80, alignment: .leading)
-                    Text("000,090,909,999,099,090원")
+                    Text(webSocketViewModel.tikcerList.kstFilterPrice24h)
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
                 }
