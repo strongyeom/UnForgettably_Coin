@@ -30,7 +30,9 @@ struct CoinDetailView: View {
         Data(date: .now.addingTimeInterval(80), value: 9),
     ]
     
-    var selectedText : CoinMarket
+    @StateObject var webSocketViewModel = SocketViewModel()
+   
+    var selectedCoinInfo : CoinMarket
     
     var body: some View {
         
@@ -48,14 +50,17 @@ struct CoinDetailView: View {
             .chartScrollableAxes(.horizontal)
             
         }
-        .navigationTitle(selectedText.koreanName)
+        .navigationTitle(selectedCoinInfo.koreanName)
         .navigationBarTitleDisplayMode(.large)
         .padding()
+        .onAppear {
+            webSocketViewModel.fetchWebSocket(selectedCoin: selectedCoinInfo.market)
+        }
     }
     
     var currentCoinValue: some View {
         HStack(alignment: .top, spacing: 10) {
-            Text("20,000,000원")
+            Text("\(webSocketViewModel.tikcerList.trade_price)원")
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundStyle(.red)

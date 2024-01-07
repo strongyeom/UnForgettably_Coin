@@ -57,7 +57,7 @@ struct CoinMainView: View {
                         }
                         .padding()
                         .navigationDestination(for: CoinMarket.self) { data in
-                            CoinDetailView(selectedText: data)
+                            CoinDetailView(selectedCoinInfo: data)
                         }
                     }
                 }
