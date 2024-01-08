@@ -12,12 +12,12 @@ struct NewsListView: View {
     @StateObject var naverNewsViewModel = NaverViewModel()
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             Text("주요뉴스")
                 .font(.title3)
                 .foregroundStyle(.black)
                 .bold()
-                .padding(.horizontal, 15)
+                .padding(.horizontal, 20)
             List {
                     ForEach(naverNewsViewModel.naverNews, id: \.self) { data in
                         

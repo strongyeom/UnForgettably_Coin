@@ -33,14 +33,8 @@ struct CoinMainView: View {
             .overlay {
                 VStack {
                     TextField("코인명을 입력해주세요.", text: $searchText)
-                        .multilineTextAlignment(.center)
-                        .textFieldStyle(.roundedBorder)
-                        .overlay {
-                            Image(systemName: "magnifyingglass")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.horizontal, 10)
-                        }
-                        .padding(EdgeInsets(top: 20, leading: 20, bottom: 5, trailing: 20))
+                        .modifier(TextFieldModifier())
+                    
                     ScrollView {
                         LazyVGrid(columns: columns) {
                             
@@ -65,6 +59,21 @@ struct CoinMainView: View {
                     print("검색어 \(searchText)")
                 }
             }
+    }
+}
+
+struct TextFieldModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .multilineTextAlignment(.center)
+            .textFieldStyle(.roundedBorder)
+            .textCase(.uppercase)
+            .overlay {
+                Image(systemName: "magnifyingglass")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 10)
+            }
+            .padding(EdgeInsets(top: 20, leading: 20, bottom: 5, trailing: 20))
     }
 }
 

@@ -81,13 +81,15 @@ final class WebSocketManager: NSObject {
     }
     
     func ping() {
-        webSocket?.sendPing(pongReceiveHandler: { error in
-            if let error {
-                print("Ping 실패")
-            } else {
-                print("Ping 성공")
-            }
-        })
+        self.timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
+            self?.webSocket?.sendPing(pongReceiveHandler: { error in
+                if let error {
+                    print("Ping 실패")
+                } else {
+                    print("Ping 성공")
+                }
+            })
+        }
     }
     
 }

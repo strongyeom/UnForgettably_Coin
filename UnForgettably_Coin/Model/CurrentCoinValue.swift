@@ -14,7 +14,7 @@ struct CurrentCoinValue: Decodable, Hashable {
     let trade_price: Double
     let acc_trade_price_24h: Double
     let acc_trade_volume_24h: Double
-    
+    let prev_closing_price: Double
     
     var kstFilterOpen: String {
         return self.opening_price.formatted()

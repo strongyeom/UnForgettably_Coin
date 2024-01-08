@@ -9,7 +9,7 @@ import SwiftUI
 import Charts
 
 struct CoinDetailView: View {
-
+    
     @StateObject var webSocketViewModel = SocketViewModel()
     @State private var scroll: Double = 0
     var selectedCoinInfo : CoinMarket
@@ -19,20 +19,10 @@ struct CoinDetailView: View {
         VStack {
             
             currentCoinValue
-                Chart {
-                    ForEach(webSocketViewModel.chartValues, id:\.self) { item in
-                        
-                        LineMark(x: .value("Date", item.date),
-                                 y: .value("Value", item.value))
-                    }
-                    .foregroundStyle(.blue)
-                }
-                .padding(30)
-                .chartScrollableAxes(.horizontal)
-                .chartScrollPosition(x: $scroll)
-                .chartYScale(domain: webSocketViewModel.minChartValues ... webSocketViewModel.maxChartValues)
-              
-                
+            nowNews
+            coinChart
+            
+            
         }
         .navigationTitle(selectedCoinInfo.koreanName)
         .navigationBarTitleDisplayMode(.large)
@@ -41,60 +31,85 @@ struct CoinDetailView: View {
             webSocketViewModel.fetchWebSocket(selectedCoin: selectedCoinInfo.market)
         }
     }
-    
-    func scrollToTrailing() {
-        // 현재
-    }
- 
-    
+    // 코인 상세 정보 및 금액
     var currentCoinValue: some View {
-        HStack(alignment: .top, spacing: 10) {
-            Text("\(webSocketViewModel.tikcerList.kstFilterTrade)원")
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundStyle(.red)
-                .lineLimit(2)
-            Spacer()
-            VStack(alignment: .leading, spacing: 0) {
-                HStack(spacing: 10) {
-                    Text("고가")
-                        .frame(width: 80, alignment: .leading)
-                    Text(webSocketViewModel.tikcerList.kstFilterHigh)
-                        .foregroundStyle(.red)
-                        .minimumScaleFactor(0.5)
-                        .bold()
-                        .lineLimit(1)
+            RoundedRectangle(cornerRadius: 20)
+                .strokeBorder(.blue, lineWidth: 1.0)
+                .overlay {
+                    HStack(alignment: .top, spacing: 10) {
+                        Text("\(webSocketViewModel.tikcerList.kstFilterTrade)원")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        //                .foregroundStyle(.red)
+                            .lineLimit(2)
+                            .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 0) {
+                            HStack(spacing: 10) {
+                                Text("고가")
+                                    .frame(width: 80, alignment: .leading)
+                                Text(webSocketViewModel.tikcerList.kstFilterHigh)
+                                    .foregroundStyle(.red)
+                                    .minimumScaleFactor(0.5)
+                                    .bold()
+                                    .lineLimit(1)
+                            }
+                            
+                            HStack(spacing: 10) {
+                                Text("저가")
+                                    .frame(width: 80, alignment: .leading)
+                                Text(webSocketViewModel.tikcerList.kstFilterLow)
+                                    .foregroundStyle(.blue)
+                                    .minimumScaleFactor(0.5)
+                                    .bold()
+                                    .lineLimit(1)
+                            }
+                            HStack(spacing: 10) {
+                                Text("거래량24H")
+                                    .frame(width: 80, alignment: .leading)
+                                Text(webSocketViewModel.tikcerList.kstFilterVolume24h)
+                                    .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
+                            }
+                            
+                            HStack(spacing: 10) {
+                                Text("거래대금24H")
+                                    .frame(width: 80, alignment: .leading)
+                                Text(webSocketViewModel.tikcerList.kstFilterPrice24h)
+                                    .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
+                            }
+                        }
+                        
+                    }
+                    .padding()
+                    .font(.caption2)
                 }
+    }
+    
+    // 실시간 선택된 뉴스
+    var nowNews: some View {
+        Rectangle()
+            .fill(.yellow)
+    }
+    
+    // 챠트
+    var coinChart: some View {
+        Chart {
+            ForEach(webSocketViewModel.chartValues, id:\.self) { item in
                 
-                HStack(spacing: 10) {
-                    Text("저가")
-                        .frame(width: 80, alignment: .leading)
-                    Text(webSocketViewModel.tikcerList.kstFilterLow)
-                        .foregroundStyle(.blue)
-                        .minimumScaleFactor(0.5)
-                        .bold()
-                        .lineLimit(1)
-                }
-                HStack(spacing: 10) {
-                    Text("거래량24H")
-                        .frame(width: 80, alignment: .leading)
-                    Text(webSocketViewModel.tikcerList.kstFilterVolume24h)
-                        .minimumScaleFactor(0.5)
-                        .lineLimit(1)
-                }
-                
-                HStack(spacing: 10) {
-                    Text("거래대금24H")
-                        .frame(width: 80, alignment: .leading)
-                    Text(webSocketViewModel.tikcerList.kstFilterPrice24h)
-                        .minimumScaleFactor(0.5)
-                        .lineLimit(1)
-                }
+                LineMark(x: .value("Date", item.date),
+                         y: .value("Value", item.value))
             }
-       
+            .foregroundStyle(.coinGraph)
         }
-        .background(.green)
-        .font(.caption2)
+        .padding(30)
+        .chartScrollableAxes(.horizontal)
+        .chartScrollPosition(x: $scroll)
+        .chartYScale(domain: webSocketViewModel.minChartValues ... webSocketViewModel.maxChartValues)
+        .frame(height: UIScreen.main.bounds.height * 0.5)
+        
+        
     }
 }
 
