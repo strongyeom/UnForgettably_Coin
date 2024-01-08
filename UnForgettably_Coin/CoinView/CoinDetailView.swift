@@ -21,14 +21,14 @@ struct CoinDetailView: View {
                 Chart {
                     ForEach(webSocketViewModel.chartValues, id:\.self) { item in
                         
-                        BarMark(x: .value("Date", item.date),
+                        LineMark(x: .value("Date", item.date),
                                  y: .value("Value", item.value))
                     }
                     .foregroundStyle(.blue)
                 }
                 .padding(30)
                 .chartScrollableAxes(.horizontal)
-                .chartYScale(domain: webSocketViewModel.tikcerList.trade_price * 0.997 ... webSocketViewModel.tikcerList.trade_price * 1.003)
+                .chartYScale(domain: webSocketViewModel.minChartValues ... webSocketViewModel.maxChartValues)
         }
         .navigationTitle(selectedCoinInfo.koreanName)
         .navigationBarTitleDisplayMode(.large)

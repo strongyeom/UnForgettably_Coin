@@ -27,7 +27,8 @@ struct CoinMainView: View {
         
         
         RoundedRectangle(cornerRadius: 20)
-            .fill(.blue)
+            .fill(.white)
+            .shadow(radius: 10)
             .ignoresSafeArea()
             .overlay {
                 VStack {
