@@ -11,6 +11,7 @@ import Charts
 struct CoinDetailView: View {
 
     @StateObject var webSocketViewModel = SocketViewModel()
+    @State private var scroll: Double = 0
     var selectedCoinInfo : CoinMarket
     
     var body: some View {
@@ -28,16 +29,16 @@ struct CoinDetailView: View {
                 }
                 .padding(30)
                 .chartScrollableAxes(.horizontal)
+                .chartScrollPosition(x: $scroll)
                 .chartYScale(domain: webSocketViewModel.minChartValues ... webSocketViewModel.maxChartValues)
+              
+                
         }
         .navigationTitle(selectedCoinInfo.koreanName)
         .navigationBarTitleDisplayMode(.large)
         .padding()
         .onAppear {
             webSocketViewModel.fetchWebSocket(selectedCoin: selectedCoinInfo.market)
-        }
-        .onChange(of: webSocketViewModel.chartValues) { _ , _  in
-            print("chart내에서 스크롤 오른쪽으로 이동")
         }
     }
     
