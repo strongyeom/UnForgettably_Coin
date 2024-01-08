@@ -33,58 +33,58 @@ struct CoinDetailView: View {
     }
     // 코인 상세 정보 및 금액
     var currentCoinValue: some View {
-            RoundedRectangle(cornerRadius: 20)
-                .strokeBorder(.blue, lineWidth: 1.0)
-                .overlay {
-                    HStack(alignment: .top, spacing: 10) {
-                        Text("\(webSocketViewModel.tikcerList.kstFilterTrade)원")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        //                .foregroundStyle(.red)
-                            .lineLimit(2)
-                            .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
-                        Spacer()
-                        VStack(alignment: .leading, spacing: 0) {
-                            HStack(spacing: 10) {
-                                Text("고가")
-                                    .frame(width: 80, alignment: .leading)
-                                Text(webSocketViewModel.tikcerList.kstFilterHigh)
-                                    .foregroundStyle(.red)
-                                    .minimumScaleFactor(0.5)
-                                    .bold()
-                                    .lineLimit(1)
-                            }
-                            
-                            HStack(spacing: 10) {
-                                Text("저가")
-                                    .frame(width: 80, alignment: .leading)
-                                Text(webSocketViewModel.tikcerList.kstFilterLow)
-                                    .foregroundStyle(.blue)
-                                    .minimumScaleFactor(0.5)
-                                    .bold()
-                                    .lineLimit(1)
-                            }
-                            HStack(spacing: 10) {
-                                Text("거래량24H")
-                                    .frame(width: 80, alignment: .leading)
-                                Text(webSocketViewModel.tikcerList.kstFilterVolume24h)
-                                    .minimumScaleFactor(0.5)
-                                    .lineLimit(1)
-                            }
-                            
-                            HStack(spacing: 10) {
-                                Text("거래대금24H")
-                                    .frame(width: 80, alignment: .leading)
-                                Text(webSocketViewModel.tikcerList.kstFilterPrice24h)
-                                    .minimumScaleFactor(0.5)
-                                    .lineLimit(1)
-                            }
+        RoundedRectangle(cornerRadius: 20)
+            .strokeBorder(.blue, lineWidth: 1.0)
+            .overlay {
+                HStack(alignment: .top, spacing: 10) {
+                    Text("\(webSocketViewModel.tikcerList.kstFilterTrade)원")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    //                .foregroundStyle(.red)
+                        .lineLimit(2)
+                        .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
+                    Spacer()
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack(spacing: 10) {
+                            Text("고가")
+                                .frame(width: 80, alignment: .leading)
+                            Text(webSocketViewModel.tikcerList.kstFilterHigh)
+                                .foregroundStyle(.red)
+                                .minimumScaleFactor(0.5)
+                                .bold()
+                                .lineLimit(1)
                         }
                         
+                        HStack(spacing: 10) {
+                            Text("저가")
+                                .frame(width: 80, alignment: .leading)
+                            Text(webSocketViewModel.tikcerList.kstFilterLow)
+                                .foregroundStyle(.blue)
+                                .minimumScaleFactor(0.5)
+                                .bold()
+                                .lineLimit(1)
+                        }
+                        HStack(spacing: 10) {
+                            Text("거래량24H")
+                                .frame(width: 80, alignment: .leading)
+                            Text(webSocketViewModel.tikcerList.kstFilterVolume24h)
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+                        }
+                        
+                        HStack(spacing: 10) {
+                            Text("거래대금24H")
+                                .frame(width: 80, alignment: .leading)
+                            Text(webSocketViewModel.tikcerList.kstFilterPrice24h)
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+                        }
                     }
-                    .padding()
-                    .font(.caption2)
+                    
                 }
+                .padding()
+                .font(.caption2)
+            }
     }
     
     // 실시간 선택된 뉴스
@@ -98,23 +98,47 @@ struct CoinDetailView: View {
                             .font(.title2)
                             .fontWeight(.bold)
                         Text(webSocketViewModel.tradeList.comparedToThePreviousDayPersent)
-                            
+                        
                         Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
                             .foregroundStyle(webSocketViewModel.tradeList.calPreToCurrentPrice > 0 ? .red : .blue)
                     }
                     .padding()
+                    .background(.gray)
+                    .clipShape(.rect(cornerRadius: 14))
                     
-                    HStack {
-                        VStack(alignment: .leading) {
+                    Spacer()
+                    
+                    VStack(alignment: .trailing) {
+                        
+                        VStack(alignment: .trailing) {
                             Text("체결가격")
+                                .font(.caption2)
                             Text(webSocketViewModel.tradeList.changePriceToFormatted)
-                            Text("체결량")
-                            Text("\(webSocketViewModel.tradeList.roundedVolume)")
                         }
                         Spacer()
+                        // webSocketViewModel.tradeList.roundedVolume
+                        
+                        
+                        VStack(alignment: .trailing) {
+                            Text("체결량")
+                                .font(.caption2)
+                            ZStack(alignment: .trailing) {
+                                
+                                
+                                
+                                Text("\((webSocketViewModel.tradeList.roundedVolume))")
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                    .background(.red)
+                                
+                                Rectangle()
+                                    .foregroundStyle(.blue.opacity(0.4))
+                            }
+                        }
                     }
+                    .padding()
                 }
             }
+        //            .background(.green)
     }
     
     // 챠트
@@ -135,6 +159,8 @@ struct CoinDetailView: View {
         
         
     }
+    
+    
 }
 
 //#Preview {
