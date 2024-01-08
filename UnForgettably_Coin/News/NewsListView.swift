@@ -12,9 +12,13 @@ struct NewsListView: View {
     @StateObject var naverNewsViewModel = NaverViewModel()
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            Text("주요뉴스")
+                .font(.title3)
+                .foregroundStyle(.black)
+                .bold()
+                .padding(.horizontal, 15)
             List {
-                Section("주요뉴스") {
                     ForEach(naverNewsViewModel.naverNews, id: \.self) { data in
                         
                         let filterUrl = data.link.replacingOccurrences(of: #"\"#, with: "")
@@ -28,11 +32,10 @@ struct NewsListView: View {
                             Text(filterTitle)
                         })
                     } // ForEach
-                } // Section
             } // List
             .listStyle(.plain)
-            
         }
+        .frame(height: UIScreen.main.bounds.height * 0.3)
        
     }
 }

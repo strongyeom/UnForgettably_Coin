@@ -11,7 +11,6 @@ import Charts
 struct CoinDetailView: View {
 
     @StateObject var webSocketViewModel = SocketViewModel()
-   
     var selectedCoinInfo : CoinMarket
     
     var body: some View {
@@ -19,7 +18,6 @@ struct CoinDetailView: View {
         VStack {
             
             currentCoinValue
-            
                 Chart {
                     ForEach(webSocketViewModel.chartValues, id:\.self) { item in
                         
@@ -31,7 +29,6 @@ struct CoinDetailView: View {
                 .padding(30)
                 .chartScrollableAxes(.horizontal)
                 .chartYScale(domain: webSocketViewModel.tikcerList.trade_price * 0.997 ... webSocketViewModel.tikcerList.trade_price * 1.003)
-            
         }
         .navigationTitle(selectedCoinInfo.koreanName)
         .navigationBarTitleDisplayMode(.large)
@@ -39,6 +36,13 @@ struct CoinDetailView: View {
         .onAppear {
             webSocketViewModel.fetchWebSocket(selectedCoin: selectedCoinInfo.market)
         }
+        .onChange(of: webSocketViewModel.chartValues) { _ , _  in
+            print("chart내에서 스크롤 오른쪽으로 이동")
+        }
+    }
+    
+    func scrollToTrailing() {
+        // 현재
     }
  
     
