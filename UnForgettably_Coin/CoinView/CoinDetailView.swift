@@ -90,7 +90,31 @@ struct CoinDetailView: View {
     // 실시간 선택된 뉴스
     var nowNews: some View {
         Rectangle()
-            .fill(.yellow)
+            .stroke(.white)
+            .overlay {
+                HStack(spacing: 20) {
+                    VStack(alignment: .leading) {
+                        Text("전일대비")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        Text(webSocketViewModel.tradeList.comparedToThePreviousDayPersent)
+                            
+                        Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
+                            .foregroundStyle(webSocketViewModel.tradeList.calPreToCurrentPrice > 0 ? .red : .blue)
+                    }
+                    .padding()
+                    
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("체결가격")
+                            Text(webSocketViewModel.tradeList.changePriceToFormatted)
+                            Text("체결량")
+                            Text("\(webSocketViewModel.tradeList.roundedVolume)")
+                        }
+                        Spacer()
+                    }
+                }
+            }
     }
     
     // 챠트

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2607B9FC2B4C1952006C038D /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2607B9FB2B4C1952006C038D /* Trade.swift */; };
 		26288C0E2B4A713000AB8388 /* CoinListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26288C0D2B4A713000AB8388 /* CoinListViewModel.swift */; };
 		26288C102B4A71A000AB8388 /* CoinMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26288C0F2B4A71A000AB8388 /* CoinMarket.swift */; };
 		26288C132B4A935500AB8388 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26288C122B4A935500AB8388 /* WebSocketManager.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2607B9FB2B4C1952006C038D /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		26288C0D2B4A713000AB8388 /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
 		26288C0F2B4A71A000AB8388 /* CoinMarket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMarket.swift; sourceTree = "<group>"; };
 		26288C122B4A935500AB8388 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				26288C0F2B4A71A000AB8388 /* CoinMarket.swift */,
 				26288C142B4A972E00AB8388 /* CurrentCoinValue.swift */,
 				26288C182B4ABA6100AB8388 /* ChartComponets.swift */,
+				2607B9FB2B4C1952006C038D /* Trade.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				26DD829B2B4932EF00364D2B /* ContentView.swift in Sources */,
 				26DD82A72B4933CC00364D2B /* NewsListView.swift in Sources */,
 				26DD82AD2B493A4C00364D2B /* CoinDetailView.swift in Sources */,
+				2607B9FC2B4C1952006C038D /* Trade.swift in Sources */,
 				26DD82BA2B4988E200364D2B /* NaverNews.swift in Sources */,
 				26DD82A92B4933D700364D2B /* CoinMainView.swift in Sources */,
 				26288C102B4A71A000AB8388 /* CoinMarket.swift in Sources */,

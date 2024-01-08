@@ -22,6 +22,7 @@ final class WebSocketManager: NSObject {
     private var isConnect = false
     
     var currentCoinValues = PassthroughSubject<CurrentCoinValue, Never>()
+    var tradeCoinValues = PassthroughSubject<Trade, Never>()
     
     func openWebSocket() {
         
@@ -45,7 +46,7 @@ final class WebSocketManager: NSObject {
     
     func send(_ selectedCoind: String) {
         let sendString = """
-        [{"ticket":"test"},{"type":"ticker","codes":["\(selectedCoind)"]}]
+        [{"ticket":"test"}, {"type":"trade","codes":["\(selectedCoind)"]}, {"type":"ticker","codes":["\(selectedCoind)"]}]
 """
         webSocket?.send(.string(sendString), completionHandler: { error in
             if let error {
@@ -62,8 +63,11 @@ final class WebSocketManager: NSObject {
                     switch success {
                     case .data(let data):
                         do {
-                            let decodedData = try JSONDecoder().decode(CurrentCoinValue.self, from: data)
-                            self?.currentCoinValues.send(decodedData)
+                            let currentCoinData = try JSONDecoder().decode(CurrentCoinValue.self, from: data)
+                            let tradeCoindData = try JSONDecoder().decode(Trade.self, from: data)
+                            
+                            self?.currentCoinValues.send(currentCoinData)
+                            self?.tradeCoinValues.send(tradeCoindData)
                         } catch {
                             print("receive Error: \(error.localizedDescription)")
                         }
