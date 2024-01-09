@@ -16,10 +16,16 @@ struct CoinDetailView: View {
     
     var body: some View {
         
-        VStack {
+        VStack(spacing: 2) {
             
-            currentCoinValue
-            nowNews
+            VStack {
+                currentCoinValue
+                nowTradeVolume
+            }
+            .padding()
+            .background(.linearGradient(Gradient(colors: [.yellow, .coinGraph]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            .clipShape(.rect(cornerRadius: 20))
+            
             coinChart
             
             
@@ -34,7 +40,7 @@ struct CoinDetailView: View {
     // 코인 상세 정보 및 금액
     var currentCoinValue: some View {
         RoundedRectangle(cornerRadius: 20)
-            .strokeBorder(.blue, lineWidth: 1.0)
+            .fill(.clear)
             .overlay {
                 HStack(alignment: .top, spacing: 10) {
                     VStack(alignment: .leading) {
@@ -93,9 +99,9 @@ struct CoinDetailView: View {
     }
     
     // 실시간 선택된 뉴스
-    var nowNews: some View {
+    var nowTradeVolume: some View {
         Rectangle()
-            .stroke(.white)
+            .fill(.clear)
             .overlay {
                 GeometryReader { proxy in
                     let grapWidth = proxy.size.width * 0.5 // 챠트 최대 너비
@@ -139,7 +145,7 @@ struct CoinDetailView: View {
                                     let graphSize = CGFloat(webSocketViewModel.tradeList.trade_volume) / CGFloat(webSocketViewModel.largestMaxValues > 0 ? webSocketViewModel.largestMaxValues : 0.1) * grapWidth
                                     
                                     Rectangle()
-                                        .foregroundStyle(.blue.opacity(0.4))
+                                        .foregroundStyle(.blue.opacity(0.6))
                                         .frame(width: graphSize)
                                     
                                     Text("\((webSocketViewModel.tradeList.roundedVolume))")
@@ -148,7 +154,7 @@ struct CoinDetailView: View {
                             .frame(width: grapWidth, alignment: .trailing)
                         }
                     }
-                    .padding()
+                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))
                 }
             }
     }
