@@ -12,12 +12,12 @@ class SocketViewModel : ObservableObject {
     
     @Published var tikcerList: CurrentCoinValue = CurrentCoinValue(opening_price: 0, high_price: 0, low_price: 0, trade_price: 0, acc_trade_price_24h: 0, acc_trade_volume_24h: 0, prev_closing_price: 0)
     @Published var tradeList: Trade = Trade(trade_price: 0, trade_volume: 0, prev_closing_price: 0, change_price: 0)
-    
-    
+    @Published var tradeMaxValue: [Double] = []
     
     @Published var chartValues: [ChartComponets] = []
     @Published var minChartValues: Double = 0.0
     @Published var maxChartValues: Double = 0.0
+    @Published var largestMaxValues: Double = 0.0
     
     private var cancelable = Set<AnyCancellable>()
     
@@ -42,18 +42,21 @@ class SocketViewModel : ObservableObject {
         WebSocketManager.shared.tradeCoinValues
             .receive(on: DispatchQueue.main)
             .sink { [weak self] trade in
+                guard let self else { return }
                 print("Trade - \(trade)")
-                self?.tradeList = trade
+                self.tradeList = trade
+                self.tradeMaxValue.append(trade.trade_volume)
+                self.largestMaxValues = tradeMaxValue.sorted(by: <).last ?? 0.0
+                
             }
             .store(in: &cancelable)
     }
     
-    
-
     deinit {
         print("SocketViewMdoel deinit")
         WebSocketManager.shared.closeWebSocket()
         self.chartValues = []
+        self.tradeMaxValue = []
     }
 
 }

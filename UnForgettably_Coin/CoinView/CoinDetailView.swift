@@ -92,53 +92,56 @@ struct CoinDetailView: View {
         Rectangle()
             .stroke(.white)
             .overlay {
-                HStack(spacing: 20) {
-                    VStack(alignment: .leading) {
-                        Text("전일대비")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        Text(webSocketViewModel.tradeList.comparedToThePreviousDayPersent)
-                        
-                        Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
-                            .foregroundStyle(webSocketViewModel.tradeList.calPreToCurrentPrice > 0 ? .red : .blue)
-                    }
-                    .padding()
-                    .background(.gray)
-                    .clipShape(.rect(cornerRadius: 14))
+                GeometryReader { proxy in
+                    let grapWidth = proxy.size.width * 0.6 // 챠트 최대 너비
                     
-                    Spacer()
-                    
-                    VStack(alignment: .trailing) {
-                        
-                        VStack(alignment: .trailing) {
-                            Text("체결가격")
-                                .font(.caption2)
-                            Text(webSocketViewModel.tradeList.changePriceToFormatted)
+                    HStack(spacing: 10) {
+                        VStack(alignment: .leading) {
+                            Text("전일대비")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            Text(webSocketViewModel.tradeList.comparedToThePreviousDayPersent)
+                            
+                            Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
+                                .foregroundStyle(webSocketViewModel.tradeList.calPreToCurrentPrice > 0 ? .red : .blue)
                         }
-                        Spacer()
-                        // webSocketViewModel.tradeList.roundedVolume
-                        
+                        .padding()
+                        .background(.gray)
+                        .clipShape(.rect(cornerRadius: 14))
+                        .frame(width: proxy.size.width * 0.3)
                         
                         VStack(alignment: .trailing) {
-                            Text("체결량")
-                                .font(.caption2)
-                            ZStack(alignment: .trailing) {
-                                
-                                
-                                
-                                Text("\((webSocketViewModel.tradeList.roundedVolume))")
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                    .background(.red)
-                                
-                                Rectangle()
-                                    .foregroundStyle(.blue.opacity(0.4))
+                            
+                            VStack(alignment: .trailing) {
+                                Text("체결가격")
+                                    .font(.caption2)
+                                Text(webSocketViewModel.tradeList.changePriceToFormatted)
                             }
+                            Spacer()
+                            
+                            VStack(alignment: .trailing) {
+                                Text("체결량")
+                                    .font(.caption2)
+                                ZStack(alignment: .trailing) {
+                                    
+                                    let graphSize = CGFloat(webSocketViewModel.tradeList.trade_volume) / CGFloat(webSocketViewModel.largestMaxValues > 0 ? webSocketViewModel.largestMaxValues : 0.1) * grapWidth
+                                    
+                                    Rectangle()
+                                        .foregroundStyle(.blue.opacity(0.4))
+                                        .frame(width: graphSize)
+                                    
+                                    Text("\((webSocketViewModel.tradeList.roundedVolume))")
+                                    
+                                    
+                                    
+                                }
+                            }
+                            .frame(width: grapWidth, alignment: .trailing)
                         }
                     }
                     .padding()
                 }
             }
-        //            .background(.green)
     }
     
     // 챠트

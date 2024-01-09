@@ -30,8 +30,7 @@ struct Trade: Decodable, Hashable {
     
     // 체결량 소수점 3자리까지
     var roundedVolume: String {
-        let filter = (trade_volume * 100) / 10
-        let aa = String(format: "%.3f", filter)
+        let aa = String(format: "%.3f", trade_volume)
         
         return aa
     }
