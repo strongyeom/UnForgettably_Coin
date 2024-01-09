@@ -14,7 +14,7 @@ class NaverViewModel : ObservableObject {
     init () {
         var urlComponets = URLComponents(string: "https://openapi.naver.com/v1/search/news.json?")
         let headers = ["X-Naver-Client-Id" : ServiceKey.naverClientID, "X-Naver-Client-Secret": ServiceKey.naverSecretKey]
-        let searchQuery = URLQueryItem(name: "query", value: "코인")
+        let searchQuery = URLQueryItem(name: "query", value: "암호화폐")
         let dateQuery = URLQueryItem(name: "sort", value: "date")
         
         urlComponets?.queryItems?.append(searchQuery)

@@ -25,40 +25,37 @@ struct CoinMainView: View {
     
     var body: some View {
         
-        
-        RoundedRectangle(cornerRadius: 20)
-            .fill(.white)
-            .shadow(radius: 10)
-            .ignoresSafeArea()
-            .overlay {
-                VStack {
-                    TextField("코인명을 입력해주세요.", text: $searchText)
-                        .modifier(TextFieldModifier())
+        VStack {
+            TextField("코인명을 입력해주세요.", text: $searchText)
+                .modifier(TextFieldModifier())
+            ScrollView {
+                LazyVGrid(columns: columns) {
                     
-                    ScrollView {
-                        LazyVGrid(columns: columns) {
-                            
-                            ForEach(searchFilterCoinList, id: \.self) { market in
-                                NavigationLink(value: market) {
-                                    Capsule()
-                                        .fill(.yellow)
-                                        .overlay {
-                                            Text("\(market.koreanName)")
-                                        }
-                                        .frame(height: 60)
+                    ForEach(searchFilterCoinList, id: \.self) { market in
+                        NavigationLink(value: market) {
+                            Capsule()
+                                .fill(.yellow)
+                                .overlay {
+                                    VStack {
+                                        Text("\(market.koreanName)")
+                                        Text("\(market.englishName)")
+                                        Text("\(market.market)")
+                                    }
+                                   
                                 }
-                            }
-                        }
-                        .padding()
-                        .navigationDestination(for: CoinMarket.self) { data in
-                            CoinDetailView(selectedCoinInfo: data)
+                                .frame(height: 60)
                         }
                     }
                 }
-                .onSubmit(of: .text) {
-                    print("검색어 \(searchText)")
+                .padding()
+                .navigationDestination(for: CoinMarket.self) { data in
+                    CoinDetailView(selectedCoinInfo: data)
                 }
             }
+        }
+        .onSubmit(of: .text) {
+            print("검색어 \(searchText)")
+        }
     }
 }
 
