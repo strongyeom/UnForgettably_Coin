@@ -37,12 +37,17 @@ struct CoinDetailView: View {
             .strokeBorder(.blue, lineWidth: 1.0)
             .overlay {
                 HStack(alignment: .top, spacing: 10) {
-                    Text("\(webSocketViewModel.tikcerList.kstFilterTrade)원")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    //                .foregroundStyle(.red)
-                        .lineLimit(2)
-                        .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
+                    VStack(alignment: .leading) {
+                        Text("\(webSocketViewModel.tikcerList.kstFilterTrade)원")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .lineLimit(2)
+                            .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
+                        Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
+                            .foregroundStyle(webSocketViewModel.tradeList.calPreToCurrentPrice > 0 ? .red : .blue)
+                            .fontWeight(.bold)
+                    }
+                    
                     Spacer()
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(spacing: 10) {
@@ -93,22 +98,27 @@ struct CoinDetailView: View {
             .stroke(.white)
             .overlay {
                 GeometryReader { proxy in
-                    let grapWidth = proxy.size.width * 0.6 // 챠트 최대 너비
+                    let grapWidth = proxy.size.width * 0.5 // 챠트 최대 너비
                     
                     HStack(spacing: 10) {
-                        VStack(alignment: .leading) {
-                            Text("전일대비")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                            Text(webSocketViewModel.tradeList.comparedToThePreviousDayPersent)
-                            
-                            Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
-                                .foregroundStyle(webSocketViewModel.tradeList.calPreToCurrentPrice > 0 ? .red : .blue)
+                        VStack {
+                            VStack(alignment: .trailing) {
+                                Text("52주 최고")
+                                    .font(.caption2)
+                                Text("\(webSocketViewModel.tikcerList.kstFilterHigh52Price)원")
+                                    .foregroundStyle(.red)
+                                    .fontWeight(.semibold)
+                            }
+                            Spacer()
+                            VStack(alignment: .trailing) {
+                                Text("52주 최저")
+                                    .font(.caption2)
+                                Text("\(webSocketViewModel.tikcerList.kstFilterLow52Price)원")
+                                    .foregroundStyle(.blue)
+                                    .fontWeight(.semibold)
+                            }
                         }
-                        .padding()
-                        .background(.gray)
-                        .clipShape(.rect(cornerRadius: 14))
-                        .frame(width: proxy.size.width * 0.3)
+                        .frame(width: proxy.size.width * 0.4)
                         
                         VStack(alignment: .trailing) {
                             
@@ -116,6 +126,8 @@ struct CoinDetailView: View {
                                 Text("체결가격")
                                     .font(.caption2)
                                 Text(webSocketViewModel.tradeList.changePriceToFormatted)
+                                    .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
+                                    .fontWeight(.semibold)
                             }
                             Spacer()
                             
@@ -131,9 +143,6 @@ struct CoinDetailView: View {
                                         .frame(width: graphSize)
                                     
                                     Text("\((webSocketViewModel.tradeList.roundedVolume))")
-                                    
-                                    
-                                    
                                 }
                             }
                             .frame(width: grapWidth, alignment: .trailing)

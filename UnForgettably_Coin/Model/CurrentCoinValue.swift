@@ -16,6 +16,11 @@ struct CurrentCoinValue: Decodable, Hashable {
     let acc_trade_volume_24h: Double
     let prev_closing_price: Double
     
+    let highest_52_week_price: Double
+    let highest_52_week_date: String
+    let lowest_52_week_price: Double
+    let lowest_52_week_date: String
+    
     var kstFilterOpen: String {
         return self.opening_price.formatted()
     }
@@ -30,6 +35,14 @@ struct CurrentCoinValue: Decodable, Hashable {
     
     var kstFilterTrade: String {
         return self.trade_price.formatted()
+    }
+    
+    var kstFilterHigh52Price: String {
+        return self.highest_52_week_price.formatted()
+    }
+    
+    var kstFilterLow52Price: String {
+        return self.lowest_52_week_price.formatted()
     }
     
     var kstFilterPrice24h: String {
