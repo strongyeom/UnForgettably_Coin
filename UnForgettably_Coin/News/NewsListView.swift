@@ -11,6 +11,7 @@ struct NewsListView: View {
     
     @StateObject var naverNewsViewModel = NaverViewModel()
     @State private var currentPage: Int = 0
+    @State var timer: Timer?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -34,8 +35,8 @@ struct NewsListView: View {
                         .tag(index)
                 }
             }
-//            .tabViewStyle(PageTabViewStyle())
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+          
             Spacer()
         }
         .background(.yellow)
@@ -45,15 +46,10 @@ struct NewsListView: View {
         .onAppear {
             startTimer()
         }
+        .onDisappear { // 왜 링크로 넘어가게 되면 Disappear가 적용하지 않는걸까?
+            stopTimer()
+        }
     }
-    
-    /*
-     .onChange(of: currentPage) { _, _ in
-         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-             self.currentPage += 1
-         }
-     }
-     */
     
     func titleModifier(titleText: String) -> String {
         let filterTitle = titleText
@@ -63,12 +59,20 @@ struct NewsListView: View {
         return filterTitle
     }
     
+    // 타이머 시작
     func startTimer() {
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { timer in
-            withAnimation(.smooth.speed(4.0)) {
-                currentPage = (currentPage + 3) % naverNewsViewModel.naverNews.count
+        self.timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { timer in
+            withAnimation(.smooth.speed(0.3)) {
+                currentPage = (currentPage + 1) % naverNewsViewModel.naverNews.count
             }
+            print("카운트 : \(currentPage)")
         }
+    }
+    
+    // 타이머 종료
+    func stopTimer() {
+        self.timer?.invalidate()
+        print("타이머 종료")
     }
     
 }
