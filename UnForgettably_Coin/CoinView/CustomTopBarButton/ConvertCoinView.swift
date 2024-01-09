@@ -22,21 +22,6 @@ struct ConvertCoinView: View {
                 LazyVGrid(columns: columns) {
                     
                     ForEach(krw_Info, id: \.self) { market in
-//                        NavigationLink(value: market) {
-//                            RoundedRectangle(cornerRadius: 12)
-//                                .fill(.yellow)
-//                                .overlay {
-//                                    
-//                                    VStack {
-//                                        Text("\(market.koreanName)")
-//                                        Text("\(market.englishName)")
-//                                        Text("\(market.market)")
-//                                    }
-//                                   
-//                                    
-//                                }
-//                                .frame(height: proxy.size.width / 2)
-//                        }
                         NavigationLink(
                             destination: {
                                 CoinDetailView(selectedCoinInfo: market)
@@ -57,11 +42,9 @@ struct ConvertCoinView: View {
                                     .frame(height: proxy.size.width / 2)
                             }
                         )
+                        
                     }
                 }
-//                .navigationDestination(for: CoinMarket.self) { data in
-//                    CoinDetailView(selectedCoinInfo: data)
-//                }
             }
             .padding()
         }
@@ -72,30 +55,3 @@ struct ConvertCoinView: View {
 #Preview {
     ConvertCoinView(krw_Info: [])
 }
-
-/*
- ScrollView {
- LazyVGrid(columns: columns) {
- 
- ForEach(searchFilterCoinList, id: \.self) { market in
- NavigationLink(value: market) {
- Capsule()
- .fill(.yellow)
- .overlay {
- VStack {
- Text("\(market.koreanName)")
- Text("\(market.englishName)")
- Text("\(market.market)")
- }
- 
- }
- .frame(height: 60)
- }
- }
- }
- .padding()
- .navigationDestination(for: CoinMarket.self) { data in
- CoinDetailView(selectedCoinInfo: data)
- }
- }
- */
