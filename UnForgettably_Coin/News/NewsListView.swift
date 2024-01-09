@@ -42,7 +42,7 @@ struct NewsListView: View {
         .background(.yellow)
         .frame(maxWidth: .infinity)
         .frame(height: 70)
-        .padding()
+        .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
         .onAppear {
             startTimer()
         }

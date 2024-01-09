@@ -14,6 +14,9 @@
 		26288C152B4A972E00AB8388 /* CurrentCoinValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26288C142B4A972E00AB8388 /* CurrentCoinValue.swift */; };
 		26288C172B4A989700AB8388 /* SocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26288C162B4A989700AB8388 /* SocketViewModel.swift */; };
 		26288C192B4ABA6100AB8388 /* ChartComponets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26288C182B4ABA6100AB8388 /* ChartComponets.swift */; };
+		2697B15B2B4D6B4500737A24 /* ConvertCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697B15A2B4D6B4500737A24 /* ConvertCoinView.swift */; };
+		2697B1602B4D6BE100737A24 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697B15F2B4D6BE100737A24 /* TabBarButton.swift */; };
+		2697B1622B4D6E3700737A24 /* CustomTopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697B1612B4D6E3700737A24 /* CustomTopTabBar.swift */; };
 		26DD82992B4932EF00364D2B /* UnForgettably_CoinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD82982B4932EF00364D2B /* UnForgettably_CoinApp.swift */; };
 		26DD829B2B4932EF00364D2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD829A2B4932EF00364D2B /* ContentView.swift */; };
 		26DD829D2B4932F100364D2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26DD829C2B4932F100364D2B /* Assets.xcassets */; };
@@ -36,6 +39,9 @@
 		26288C142B4A972E00AB8388 /* CurrentCoinValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCoinValue.swift; sourceTree = "<group>"; };
 		26288C162B4A989700AB8388 /* SocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketViewModel.swift; sourceTree = "<group>"; };
 		26288C182B4ABA6100AB8388 /* ChartComponets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartComponets.swift; sourceTree = "<group>"; };
+		2697B15A2B4D6B4500737A24 /* ConvertCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCoinView.swift; sourceTree = "<group>"; };
+		2697B15F2B4D6BE100737A24 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
+		2697B1612B4D6E3700737A24 /* CustomTopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTopTabBar.swift; sourceTree = "<group>"; };
 		26DD82952B4932EF00364D2B /* UnForgettably_Coin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnForgettably_Coin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DD82982B4932EF00364D2B /* UnForgettably_CoinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnForgettably_CoinApp.swift; sourceTree = "<group>"; };
 		26DD829A2B4932EF00364D2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +74,16 @@
 				26288C122B4A935500AB8388 /* WebSocketManager.swift */,
 			);
 			path = WebSocket;
+			sourceTree = "<group>";
+		};
+		2697B15E2B4D6BCB00737A24 /* CustomTopBarButton */ = {
+			isa = PBXGroup;
+			children = (
+				2697B15A2B4D6B4500737A24 /* ConvertCoinView.swift */,
+				2697B15F2B4D6BE100737A24 /* TabBarButton.swift */,
+				2697B1612B4D6E3700737A24 /* CustomTopTabBar.swift */,
+			);
+			path = CustomTopBarButton;
 			sourceTree = "<group>";
 		};
 		26DD828C2B4932EF00364D2B = {
@@ -136,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				26DD82A82B4933D700364D2B /* CoinMainView.swift */,
+				2697B15E2B4D6BCB00737A24 /* CustomTopBarButton */,
 				26DD82AC2B493A4C00364D2B /* CoinDetailView.swift */,
 			);
 			path = CoinView;
@@ -229,13 +246,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				26288C152B4A972E00AB8388 /* CurrentCoinValue.swift in Sources */,
+				2697B1602B4D6BE100737A24 /* TabBarButton.swift in Sources */,
 				26DD82C62B49981C00364D2B /* NaverViewModel.swift in Sources */,
 				26DD829B2B4932EF00364D2B /* ContentView.swift in Sources */,
 				26DD82A72B4933CC00364D2B /* NewsListView.swift in Sources */,
 				26DD82AD2B493A4C00364D2B /* CoinDetailView.swift in Sources */,
 				2607B9FC2B4C1952006C038D /* Trade.swift in Sources */,
 				26DD82BA2B4988E200364D2B /* NaverNews.swift in Sources */,
+				2697B1622B4D6E3700737A24 /* CustomTopTabBar.swift in Sources */,
 				26DD82A92B4933D700364D2B /* CoinMainView.swift in Sources */,
+				2697B15B2B4D6B4500737A24 /* ConvertCoinView.swift in Sources */,
 				26288C102B4A71A000AB8388 /* CoinMarket.swift in Sources */,
 				26DD82992B4932EF00364D2B /* UnForgettably_CoinApp.swift in Sources */,
 				26DD82B82B49889500364D2B /* ServiceKey.swift in Sources */,
