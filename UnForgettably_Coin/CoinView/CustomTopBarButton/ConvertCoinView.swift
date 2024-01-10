@@ -30,14 +30,27 @@ struct ConvertCoinView: View {
                                 RoundedRectangle(cornerRadius: 12)
                                     .fill(.yellow)
                                     .overlay {
-                                        
-                                        VStack {
+                                        VStack(alignment: .leading) {
+                                            Image(systemName: "flame")
+                                                .resizable()
+                                                .frame(width: 50, height: 50)
+                                                .padding(.bottom, 7)
                                             Text("\(market.koreanName)")
-                                            Text("\(market.englishName)")
-                                            Text("\(market.market)")
+                                                .font(.caption)
+                                            Text("23,333,333333원")
+                                                .font(.title2)
+                                                .fontWeight(.semibold)
+                                                .lineLimit(1)
+                                                .minimumScaleFactor(0.5)
+                                                .foregroundStyle(.black)
+                                                .padding(.bottom, 13)
+                                            Text("15.3%")
+                                                .foregroundStyle(.green)
+                                                .font(.caption)
                                         }
-                                       
-                                        
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                        .background(.red)
+                                        .padding()
                                     }
                                     .frame(height: proxy.size.width / 2)
                             }

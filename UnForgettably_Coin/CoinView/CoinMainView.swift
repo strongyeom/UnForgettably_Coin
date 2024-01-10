@@ -61,30 +61,3 @@ struct TextFieldModifier: ViewModifier {
 #Preview {
     CoinMainView(indexBaseCoinMarkets: [])
 }
-
-/*
- ScrollView {
-     LazyVGrid(columns: columns) {
-         
-         ForEach(searchFilterCoinList, id: \.self) { market in
-             NavigationLink(value: market) {
-                 Capsule()
-                     .fill(.yellow)
-                     .overlay {
-                         VStack {
-                             Text("\(market.koreanName)")
-                             Text("\(market.englishName)")
-                             Text("\(market.market)")
-                         }
-                        
-                     }
-                     .frame(height: 60)
-             }
-         }
-     }
-     .padding()
-     .navigationDestination(for: CoinMarket.self) { data in
-         CoinDetailView(selectedCoinInfo: data)
-     }
- }
- */

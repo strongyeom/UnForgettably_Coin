@@ -10,12 +10,13 @@ import SwiftUI
 class CoinListViewModel : ObservableObject {
     
     @Published var coinMarket: [CoinMarket] = []
+    var aa : [String] = []
     
     init() {
         let url = URL(string: "https://api.upbit.com/v1/market/all")!
         
         let session = URLSession.shared
-        
+        //enter()
         session.dataTask(with: url) { data, response, error in
             if let error {
                 print(error.localizedDescription)
@@ -31,6 +32,11 @@ class CoinListViewModel : ObservableObject {
                 let decodedData = try JSONDecoder().decode([CoinMarket].self, from: data)
                 DispatchQueue.main.async {
                     self.coinMarket = decodedData
+                    let bb = decodedData.map { $0.market }.reduce ("") { (first, second) -> String in
+                        return "\(first), \(second)"
+                    }
+                    print("bb - \(bb)")
+                    // leave()
                 }
             } catch {
                 print("디코딩 에러 \(error.localizedDescription)")
@@ -39,4 +45,39 @@ class CoinListViewModel : ObservableObject {
         }
         .resume()
     }
+    
+    func example() {
+        let url = URL(string: "https://api.upbit.com/v1/ticker?markets=\(aa)")!
+        
+        let session = URLSession.shared
+        //enter
+        session.dataTask(with: url) { data, response, error in
+            if let error {
+                print(error.localizedDescription)
+            }
+            
+            if let statusCode = response as? HTTPURLResponse {
+                print("업비트 상태코드 : \(statusCode.statusCode)")
+            }
+            
+            guard let data else { return }
+            
+            do {
+                let decodedData = try JSONDecoder().decode([CoinMarket].self, from: data)
+                DispatchQueue.main.async {
+                    self.coinMarket = decodedData
+                    let bb = decodedData.map { $0.market }.reduce ("") { (first, second) -> String in
+                        return "\(first), \(second)"
+                    }
+                    print("bb - \(bb)")
+                    //leave()
+                }
+            } catch {
+                print("디코딩 에러 \(error.localizedDescription)")
+            }
+            
+        }
+        .resume()
+    }
+
 }
