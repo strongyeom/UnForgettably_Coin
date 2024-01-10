@@ -8,41 +8,39 @@
 import Foundation
 
 struct CurrentCoinValue: Decodable, Hashable {
-    let opening_price: Double?
-    let high_price: Double?
-    let low_price: Double?
-    let trade_price: Double?
-    let acc_trade_price_24h: Double?
-    let acc_trade_volume_24h: Double?
-    let prev_closing_price: Double?
+    let opening_price: Double
+    let high_price: Double
+    let low_price: Double
+    let trade_price: Double
+    let acc_trade_price_24h: Double
+    let acc_trade_volume_24h: Double
+    let prev_closing_price: Double
     
-    let highest_52_week_price: Double?
-    let highest_52_week_date: String?
-    let lowest_52_week_price: Double?
-    let lowest_52_week_date: String?
+    let highest_52_week_price: Double
+    let lowest_52_week_price: Double
     
     var kstFilterOpen: String {
-        return (self.opening_price ?? 0.0).formatted()
+        return self.opening_price.formatted()
     }
     
     var kstFilterHigh: String {
-        return (self.high_price ?? 0.0).formatted()
+        return self.high_price.formatted()
     }
 
     var kstFilterLow: String {
-        return (self.low_price ?? 0.0).formatted()
+        return self.low_price.formatted()
     }
     
     var kstFilterTrade: String {
-        return (self.trade_price ?? 0.0).formatted()
+        return self.trade_price.formatted()
     }
     
     var kstFilterHigh52Price: String {
-        return (self.highest_52_week_price ?? 0.0) .formatted()
+        return self.highest_52_week_price.formatted()
     }
     
     var kstFilterLow52Price: String {
-        return (self.lowest_52_week_price ?? 0.0).formatted()
+        return self.lowest_52_week_price.formatted()
     }
     
     var kstFilterPrice24h: String {
