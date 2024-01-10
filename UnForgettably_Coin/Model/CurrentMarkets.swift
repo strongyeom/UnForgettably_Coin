@@ -13,6 +13,12 @@ struct CurrentMarkets: Decodable, Hashable {
     let trade_volume: Double
     let prev_closing_price: Double
     let change_price: Double
+    
+    /// 전일 00시 기준  대비 퍼센트
+    var comparedToThePreviousDayPersent: String {
+        return String(format: "%.2f", (trade_price / prev_closing_price)) + "%"
+    }
+    
 }
 
 struct MatchMarketName: Hashable {

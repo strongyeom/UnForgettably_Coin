@@ -30,7 +30,6 @@ final class CoinListViewModel : ObservableObject {
             self.matchMarket = (0..<self.coinMarket.count).map {
                 MatchMarketName(marketName: self.coinMarket[$0].koreanName, marketInfo: self.currentMarkets[$0])
             }
-            dump(self.matchMarket)
         }
     }
     

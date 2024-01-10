@@ -31,7 +31,7 @@ class SocketViewModel : ObservableObject {
             .sink { [weak self] order in
                 guard let self else { return }
                 self.tikcerList = order
-                self.chartValues.append(ChartComponets(date: .now, value: order.trade_price))
+                self.chartValues.append(ChartComponets(date: .now, value: order.trade_price ?? 0.0))
                 self.minChartValues = chartValues.map { $0.value}.sorted(by: <).first ?? 0.0
                 self.maxChartValues = chartValues.map { $0.value}.sorted(by: <).last ?? 0.0
                 print("chartValues - \(chartValues)")

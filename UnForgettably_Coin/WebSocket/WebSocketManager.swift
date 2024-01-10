@@ -45,6 +45,7 @@ final class WebSocketManager: NSObject {
     }
     
     func send(_ selectedCoind: String) {
+        print("selectedCoind - \(selectedCoind)")
         let sendString = """
         [{"ticket":"test"}, {"type":"trade","codes":["\(selectedCoind)"]}, {"type":"ticker","codes":["\(selectedCoind)"]}]
 """
@@ -62,15 +63,22 @@ final class WebSocketManager: NSObject {
                 case .success(let success):
                     switch success {
                     case .data(let data):
+                        
                         do {
                             let currentCoinData = try JSONDecoder().decode(CurrentCoinValue.self, from: data)
-                            let tradeCoindData = try JSONDecoder().decode(Trade.self, from: data)
-                            
                             self?.currentCoinValues.send(currentCoinData)
+                        } catch {
+                            print("Decoding - \(String(data: data, encoding: .utf8))")
+                            print("Decoding - receive currentCoinData Error: \(error.localizedDescription)")
+                        }
+                        
+                        do {
+                            let tradeCoindData = try JSONDecoder().decode(Trade.self, from: data)
                             self?.tradeCoinValues.send(tradeCoindData)
                         } catch {
-                            print("receive Error: \(error.localizedDescription)")
+                            print("receive tradeCoindData Error: \(error.localizedDescription)")
                         }
+                        
                     case .string(let string): print(string)
                     @unknown default : print("")
                     }

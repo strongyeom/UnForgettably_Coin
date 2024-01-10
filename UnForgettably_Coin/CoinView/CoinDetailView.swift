@@ -48,7 +48,7 @@ struct CoinDetailView: View {
                             .font(.title2)
                             .fontWeight(.bold)
                             .lineLimit(2)
-                            .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
+                            .foregroundStyle((webSocketViewModel.tikcerList.trade_price ?? 0.0) > (webSocketViewModel.tikcerList.prev_closing_price ?? 0.0) ? .red : .blue)
                         Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
                             .foregroundStyle(webSocketViewModel.tradeList.calPreToCurrentPrice > 0 ? .red : .blue)
                             .fontWeight(.bold)
@@ -132,7 +132,7 @@ struct CoinDetailView: View {
                                 Text("체결가격")
                                     .font(.caption2)
                                 Text(webSocketViewModel.tradeList.changePriceToFormatted)
-                                    .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
+                                    .foregroundStyle((webSocketViewModel.tikcerList.trade_price ?? 0.0) > (webSocketViewModel.tikcerList.prev_closing_price ?? 0.0) ? .red : .blue)
                                     .fontWeight(.semibold)
                             }
                             Spacer()

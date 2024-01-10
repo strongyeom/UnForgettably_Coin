@@ -44,7 +44,7 @@ struct ConvertCoinView: View {
                                                 .minimumScaleFactor(0.5)
                                                 .foregroundStyle(.black)
                                                 .padding(.bottom, 13)
-                                            Text("\(market.marketInfo.trade_volume.formatted())%")
+                                            Text(market.marketInfo.comparedToThePreviousDayPersent)
                                                 .foregroundStyle(.green)
                                                 .font(.caption)
                                         }
