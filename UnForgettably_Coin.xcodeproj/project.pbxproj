@@ -14,6 +14,7 @@
 		26288C152B4A972E00AB8388 /* CurrentCoinValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26288C142B4A972E00AB8388 /* CurrentCoinValue.swift */; };
 		26288C172B4A989700AB8388 /* SocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26288C162B4A989700AB8388 /* SocketViewModel.swift */; };
 		26288C192B4ABA6100AB8388 /* ChartComponets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26288C182B4ABA6100AB8388 /* ChartComponets.swift */; };
+		2688E16B2B4EB4CB007F85F5 /* BitCoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2688E16A2B4EB4CB007F85F5 /* BitCoinImageView.swift */; };
 		2697B15B2B4D6B4500737A24 /* ConvertCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697B15A2B4D6B4500737A24 /* ConvertCoinView.swift */; };
 		2697B1602B4D6BE100737A24 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697B15F2B4D6BE100737A24 /* TabBarButton.swift */; };
 		2697B1622B4D6E3700737A24 /* CustomTopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697B1612B4D6E3700737A24 /* CustomTopTabBar.swift */; };
@@ -40,6 +41,7 @@
 		26288C142B4A972E00AB8388 /* CurrentCoinValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCoinValue.swift; sourceTree = "<group>"; };
 		26288C162B4A989700AB8388 /* SocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketViewModel.swift; sourceTree = "<group>"; };
 		26288C182B4ABA6100AB8388 /* ChartComponets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartComponets.swift; sourceTree = "<group>"; };
+		2688E16A2B4EB4CB007F85F5 /* BitCoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitCoinImageView.swift; sourceTree = "<group>"; };
 		2697B15A2B4D6B4500737A24 /* ConvertCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCoinView.swift; sourceTree = "<group>"; };
 		2697B15F2B4D6BE100737A24 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		2697B1612B4D6E3700737A24 /* CustomTopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTopTabBar.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				2697B15A2B4D6B4500737A24 /* ConvertCoinView.swift */,
+				2688E16A2B4EB4CB007F85F5 /* BitCoinImageView.swift */,
 				2697B15F2B4D6BE100737A24 /* TabBarButton.swift */,
 				2697B1612B4D6E3700737A24 /* CustomTopTabBar.swift */,
 			);
@@ -263,6 +266,7 @@
 				26288C102B4A71A000AB8388 /* CoinMarket.swift in Sources */,
 				26DD82992B4932EF00364D2B /* UnForgettably_CoinApp.swift in Sources */,
 				26DD82B82B49889500364D2B /* ServiceKey.swift in Sources */,
+				2688E16B2B4EB4CB007F85F5 /* BitCoinImageView.swift in Sources */,
 				26288C192B4ABA6100AB8388 /* ChartComponets.swift in Sources */,
 				26288C0E2B4A713000AB8388 /* CoinListViewModel.swift in Sources */,
 				26288C132B4A935500AB8388 /* WebSocketManager.swift in Sources */,

@@ -18,7 +18,6 @@ struct NewsListView: View {
             Text("주요 뉴스")
                 .font(.title2)
                 .fontWeight(.bold)
-                .background(.red)
             
             TabView(selection: $currentPage) {
                 ForEach(Array(zip(naverNewsViewModel.naverNews.indices, naverNewsViewModel.naverNews)), id:\.0) { index, data in
@@ -26,7 +25,6 @@ struct NewsListView: View {
                     Text(titleModifier(titleText: data.title))
                         .font(.title3)
                         .fontWeight(.semibold)
-                        .background(.green)
                         .lineLimit(1)
                         .onTapGesture {
                             guard let url = URL(string: filterUrl) else { return }
@@ -39,7 +37,6 @@ struct NewsListView: View {
           
             Spacer()
         }
-        .background(.yellow)
         .frame(maxWidth: .infinity)
         .frame(height: 70)
         .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))

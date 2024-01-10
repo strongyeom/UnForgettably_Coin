@@ -33,7 +33,6 @@ struct CoinMainView: View {
                     .frame(width: UIScreen.main.bounds.width - 24, alignment: .center)
                     .padding(.horizontal, 12)
         }
-        .background(.green)
         .onSubmit(of: .text) {
             print("검색어 \(searchText)")
         }

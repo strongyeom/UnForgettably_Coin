@@ -46,9 +46,14 @@ struct CoinDetailView: View {
                     .fontWeight(.bold)
                     .lineLimit(2)
                     .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
-                Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
-                    .foregroundStyle(webSocketViewModel.tradeList.calPreToCurrentPrice > 0 ? .red : .blue)
-                    .fontWeight(.bold)
+                HStack {
+                    Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
+                        
+                    Text(webSocketViewModel.tradeList.comparedToThePreviousDayPersent)
+                }
+                .foregroundStyle(webSocketViewModel.tradeList.calPreToCurrentPrice > 0 ? .red : .blue)
+                .fontWeight(.bold)
+               
             }
             
             Spacer()

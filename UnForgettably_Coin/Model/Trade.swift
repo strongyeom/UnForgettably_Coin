@@ -15,7 +15,7 @@ struct Trade: Decodable, Hashable {
     
     // 전일 대비 퍼센트
     var comparedToThePreviousDayPersent: String {
-        return String(format: "%.2f", (trade_price / prev_closing_price)) + "%"
+        return String(format: "%.2f", ( -100  + (trade_price / prev_closing_price) * 100)) + "%"
     }
 
     // 체결 가격

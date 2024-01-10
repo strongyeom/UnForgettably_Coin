@@ -28,11 +28,10 @@ struct ConvertCoinView: View {
                             },
                             label: {
                                 RoundedRectangle(cornerRadius: 12)
-                                    .fill(.yellow)
+                                    .fill(.yellow) // arrowtriangle.up.fill , arrowtriangle.down.fill
                                     .overlay {
-                                        VStack(alignment: .leading) {
-                                            Image(systemName: "flame")
-                                                .resizable()
+                                        VStack(alignment: .center) {
+                                            BitCoinImageView(bitCoinTitmeName: String(market.marketInfo.market.split(separator: "-").last!))
                                                 .frame(width: 50, height: 50)
                                                 .padding(.bottom, 7)
                                             Text("\(market.marketName)")
@@ -45,11 +44,10 @@ struct ConvertCoinView: View {
                                                 .foregroundStyle(.black)
                                                 .padding(.bottom, 13)
                                             Text(market.marketInfo.comparedToThePreviousDayPersent)
-                                                .foregroundStyle(.green)
+                                                .foregroundStyle(market.marketInfo.comparedToThePreviousDayPersent.first == "-" ? .blue : .red)
                                                 .font(.caption)
                                         }
                                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                        .background(.red)
                                         .padding()
                                     }
                                     .frame(height: proxy.size.width / 2)

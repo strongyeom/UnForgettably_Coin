@@ -16,7 +16,7 @@ struct CurrentMarkets: Decodable, Hashable {
     
     /// 전일 00시 기준  대비 퍼센트
     var comparedToThePreviousDayPersent: String {
-        return String(format: "%.2f", (trade_price / prev_closing_price)) + "%"
+        return String(format: "%.2f", ( -100  + (trade_price / prev_closing_price) * 100)) + "%"
     }
     
 }
