@@ -7,12 +7,34 @@
 
 import SwiftUI
 
-class CoinListViewModel : ObservableObject {
+final class CoinListViewModel : ObservableObject {
     
-    @Published var coinMarket: [CoinMarket] = []
-    var aa : [String] = []
+    private var coinMarket: [CoinMarket] = []
+    private let dispatchGroup = DispatchGroup()
+    private var coinNameArrayToString: String = ""
+    private var currentMarkets: [CurrentMarkets] = []
+    @Published var matchMarket: [MatchMarketName] = []
     
     init() {
+        dispatchGroup.enter()
+        bitCoinAllMarketName { allCoinName in
+            self.coinMarket = allCoinName
+            self.bitCoinNameMatchedPrice(allCoinNames: allCoinName) { currentMarket in
+                self.currentMarkets = currentMarket
+                self.dispatchGroup.leave()
+            }
+            
+        }
+        dispatchGroup.notify(queue: .main) {
+//            print("결과 : \(self.currentMarkets)")
+            self.matchMarket = (0..<self.coinMarket.count).map {
+                MatchMarketName(marketName: self.coinMarket[$0].koreanName, marketInfo: self.currentMarkets[$0])
+            }
+            dump(self.matchMarket)
+        }
+    }
+    
+    func bitCoinAllMarketName(completionHandler: @escaping(([CoinMarket]) -> Void)) {
         let url = URL(string: "https://api.upbit.com/v1/market/all")!
         
         let session = URLSession.shared
@@ -30,14 +52,7 @@ class CoinListViewModel : ObservableObject {
             
             do {
                 let decodedData = try JSONDecoder().decode([CoinMarket].self, from: data)
-                DispatchQueue.main.async {
-                    self.coinMarket = decodedData
-                    let bb = decodedData.map { $0.market }.reduce ("") { (first, second) -> String in
-                        return "\(first), \(second)"
-                    }
-                    print("bb - \(bb)")
-                    // leave()
-                }
+                completionHandler(decodedData)
             } catch {
                 print("디코딩 에러 \(error.localizedDescription)")
             }
@@ -46,9 +61,9 @@ class CoinListViewModel : ObservableObject {
         .resume()
     }
     
-    func example() {
-        let url = URL(string: "https://api.upbit.com/v1/ticker?markets=\(aa)")!
-        
+    func bitCoinNameMatchedPrice(allCoinNames: [CoinMarket], completionHandler: @escaping(([CurrentMarkets])-> Void)) {
+        let filterCoinNames = allCoinNames.map { $0.market }.joined(separator: ", ")
+        let url = URL(string: "https://api.upbit.com/v1/ticker?markets=\(filterCoinNames)")!
         let session = URLSession.shared
         //enter
         session.dataTask(with: url) { data, response, error in
@@ -63,15 +78,8 @@ class CoinListViewModel : ObservableObject {
             guard let data else { return }
             
             do {
-                let decodedData = try JSONDecoder().decode([CoinMarket].self, from: data)
-                DispatchQueue.main.async {
-                    self.coinMarket = decodedData
-                    let bb = decodedData.map { $0.market }.reduce ("") { (first, second) -> String in
-                        return "\(first), \(second)"
-                    }
-                    print("bb - \(bb)")
-                    //leave()
-                }
+                let decodedData = try JSONDecoder().decode([CurrentMarkets].self, from: data)
+                   completionHandler(decodedData)
             } catch {
                 print("디코딩 에러 \(error.localizedDescription)")
             }

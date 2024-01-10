@@ -13,12 +13,9 @@ struct CoinMainView: View {
     @State var tabIndex = 0
     @StateObject var coinViewModel = CoinListViewModel()
     
-    var searchFilterCoinList: [CoinMarket] {
-        return searchText.isEmpty ? coinViewModel.coinMarket : coinViewModel.coinMarket.filter { $0.koreanName.contains(searchText)}
+    var searchFilterCoinList: [MatchMarketName] {
+        return searchText.isEmpty ? coinViewModel.matchMarket : coinViewModel.matchMarket.filter { $0.marketName.contains(searchText)}
     }
-    
-    @State var indexBaseCoinMarkets: [CoinMarket] = []
-    
     var body: some View {
         
         VStack {
@@ -29,7 +26,7 @@ struct CoinMainView: View {
             VStack(spacing: 0){
                         CustomTopTabBar(tabIndex: $tabIndex)
                         
-                        ConvertCoinView(krw_Info: tabIndex == 0 ? searchFilterCoinList.filter { ($0.market.split(separator: "-").first ?? "") == "KRW" } : searchFilterCoinList.filter { ($0.market.split(separator: "-").first ?? "") == "BTC"})
+                ConvertCoinView(krw_Info: tabIndex == 0 ? searchFilterCoinList.filter { ($0.marketInfo.market.split(separator: "-").first ?? "") == "KRW" } : searchFilterCoinList.filter { ($0.marketInfo.market.split(separator: "-").first ?? "") == "BTC"})
                         
                         Spacer()
                     }
@@ -59,5 +56,5 @@ struct TextFieldModifier: ViewModifier {
 }
 
 #Preview {
-    CoinMainView(indexBaseCoinMarkets: [])
+    CoinMainView()
 }

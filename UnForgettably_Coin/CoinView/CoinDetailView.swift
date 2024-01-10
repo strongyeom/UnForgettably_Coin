@@ -12,7 +12,7 @@ struct CoinDetailView: View {
     
     @StateObject var webSocketViewModel = SocketViewModel()
     @State private var scroll: Double = 0
-    var selectedCoinInfo : CoinMarket
+    var selectedCoinInfo : MatchMarketName
     
     var body: some View {
         
@@ -30,11 +30,11 @@ struct CoinDetailView: View {
             
             
         }
-        .navigationTitle(selectedCoinInfo.koreanName)
+        .navigationTitle(selectedCoinInfo.marketName)
         .navigationBarTitleDisplayMode(.large)
         .padding()
         .onAppear {
-            webSocketViewModel.fetchWebSocket(selectedCoin: selectedCoinInfo.market)
+            webSocketViewModel.fetchWebSocket(selectedCoin: selectedCoinInfo.marketInfo.market)
         }
     }
     // 코인 상세 정보 및 금액
