@@ -68,7 +68,6 @@ final class WebSocketManager: NSObject {
                             let currentCoinData = try JSONDecoder().decode(CurrentCoinValue.self, from: data)
                             self?.currentCoinValues.send(currentCoinData)
                         } catch {
-                            print("Decoding - \(String(data: data, encoding: .utf8))")
                             print("Decoding - receive currentCoinData Error: \(error.localizedDescription)")
                         }
                         

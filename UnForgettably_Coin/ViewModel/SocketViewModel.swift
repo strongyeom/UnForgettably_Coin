@@ -34,7 +34,7 @@ class SocketViewModel : ObservableObject {
                 self.chartValues.append(ChartComponets(date: .now, value: order.trade_price))
                 self.minChartValues = chartValues.map { $0.value}.sorted(by: <).first ?? 0.0
                 self.maxChartValues = chartValues.map { $0.value}.sorted(by: <).last ?? 0.0
-                print("chartValues - \(chartValues)")
+//                print("chartValues - \(chartValues)")
             }
             .store(in: &cancelable)
         
@@ -43,7 +43,6 @@ class SocketViewModel : ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] trade in
                 guard let self else { return }
-                print("Trade - \(trade)")
                 self.tradeList = trade
                 self.tradeMaxValue.append(trade.trade_volume)
                 self.largestMaxValues = tradeMaxValue.sorted(by: <).last ?? 0.0
