@@ -28,7 +28,7 @@ struct ConvertCoinView: View {
                             },
                             label: {
                                 RoundedRectangle(cornerRadius: 12)
-                                    .fill(.yellow) // arrowtriangle.up.fill , arrowtriangle.down.fill
+                                    .fill(.linearGradient(Gradient(colors: [.yellow, .coinGraph]), startPoint: .topLeading, endPoint: .bottomTrailing)) // arrowtriangle.up.fill , arrowtriangle.down.fill
                                     .overlay {
                                         VStack(alignment: .center) {
                                             BitCoinImageView(bitCoinTitmeName: String(market.marketInfo.market.split(separator: "-").last!))

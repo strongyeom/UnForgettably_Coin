@@ -45,6 +45,7 @@ struct CoinDetailView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                     .lineLimit(2)
+                    .minimumScaleFactor(0.5)
                     .foregroundStyle(webSocketViewModel.tikcerList.trade_price > webSocketViewModel.tikcerList.prev_closing_price ? .red : .blue)
                 HStack {
                     Text(webSocketViewModel.tradeList.calPreToCurrentPrice.formatted())
